@@ -1,0 +1,19 @@
+services:
+
+  app:
+    build: .
+    command: python app.py
+    environment:
+      FLASK_ENV: development
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    ports:
+      - 5000:5000
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app
